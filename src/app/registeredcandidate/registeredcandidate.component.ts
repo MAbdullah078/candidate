@@ -12,6 +12,7 @@ declare var $;
 })
 export class RegisteredcandidateComponent implements OnInit {
   show_toogle:boolean = true
+  del_id:any=[]
   name = 'Angular 6';
   htmlContent = '';
   edit_msg:any =[];
@@ -97,12 +98,11 @@ export class RegisteredcandidateComponent implements OnInit {
     });
   }
 
-  delete_cand(id){
-    console.log(id)
-    this.app_Service.Delete(id).subscribe(rfm =>{
+  delete_cand(){
+    console.log(this.del_id)
+    this.app_Service.Delete(this.del_id).subscribe(rfm =>{
       console.log('delete')
-      console.log(id)
-      // alert('deleted')
+           // alert('deleted')
     
     })
   }
@@ -173,8 +173,10 @@ export class RegisteredcandidateComponent implements OnInit {
 
     }
 
-
+   
   get_val(data){
+    this.del_id =[]
+    this.del_id = data
     console.log(data)
      for(let abc of this.dummylisting){
        if ( data ==  abc.CandidateID){
